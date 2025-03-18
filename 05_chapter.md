@@ -1,6 +1,6 @@
 **V. Hands-on Demo with Sample GWAS Data**
 
-This chapter provides a practical, step-by-step guide to working with sample GWAS data in VAST DB, allowing you to apply the concepts learned in previous chapters.
+This chapter provides a practical, step-by-step guide to working with sample GWAS data in VAST DB, using a transposed design, allowing you to apply the concepts learned in previous chapters.
 
 **5.1. Obtaining and Preparing Sample GWAS Data**
 
@@ -29,8 +29,8 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
         * For a simpler and quicker start, consider using simulated GWAS data. Tools like `PLINK` or `Hail` can generate simulated genotype and phenotype data.
         * This is especially helpful if you don't have immediate access to real GWAS datasets.
 * **Steps for Data Conversion and Formatting:**
-    * **VCF to Apache Arrow:**
-        * Use Python libraries like `pysam` and `pyarrow` to convert VCF files to Apache Arrow format, which is compatible with VAST DB.
+    * **VCF to Apache Arrow (Transposed Design):**
+        * Use Python libraries like `pysam`, `pandas`, and `pyarrow` to convert VCF files to Apache Arrow format, using a transposed design.
         * Example Python code snippet (illustrative):
 
 ```python
@@ -39,27 +39,28 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
         import pyarrow.parquet as pq
         import pandas as pd
 
-        def vcf_to_arrow(vcf_file, output_parquet):
+        def vcf_to_arrow_transposed(vcf_file, output_parquet):
             vcf = pysam.VariantFile(vcf_file)
             data = []
             for record in vcf:
-                row = [record.chrom, record.pos]
+                chrom = record.chrom
+                pos = record.pos
                 for sample in record.samples:
+                    individual_id = sample
                     genotype = record.samples[sample]['GT']
                     if genotype is None:
-                        row.append(None) #handle missing data.
+                        genotype_str = None
                     else:
                         alleles = [str(record.alleles[i]) for i in genotype if i is not None]
-                        row.append("|".join(alleles))
+                        genotype_str = "|".join(alleles)
+                    data.append([chrom, pos, individual_id, genotype_str])
 
-                data.append(row)
-
-            columns = ["Chromosome", "Position"] + list(vcf.header.samples)
-            table = pa.Table.from_pandas(pd.DataFrame(data, columns=columns))
+            df = pd.DataFrame(data, columns=["Chromosome", "Position", "Individual_ID", "Genotype"])
+            table = pa.Table.from_pandas(df)
             pq.write_table(table, output_parquet)
 
         # Example usage
-        vcf_to_arrow("chr22_subset.vcf.gz", "chr22_subset.parquet")
+        vcf_to_arrow_transposed("chr22_subset.vcf.gz", "chr22_subset_transposed.parquet")
 ```
 
     * **Phenotype Data:**
@@ -74,7 +75,7 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
 
 * **Instructions for Creating Schemas and Tables:**
     * Provide example `vastdb` SDK code to create schemas and tables for genotype, phenotype, and metadata data.
-    * Example:
+    * Example (Transposed Genotype Table):
 
 ```python
         import vastdb
@@ -91,13 +92,14 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
             bucket = tx.bucket("my_gwas_bucket")
             schema = bucket.create_schema("gwas_demo")
 
-            # Genotype Table Schema
+            # Transposed Genotype Table Schema
             genotype_schema = pa.schema([
                 ('Chromosome', pa.string()),
                 ('Position', pa.int64()),
-                # Add columns for each individual based on the VCF file
+                ('Individual_ID', pa.string()),
+                ('Genotype', pa.string())
             ])
-            genotype_table = schema.create_table("Genotype_chr22", genotype_schema)
+            genotype_table = schema.create_table("Genotype_chr22_transposed", genotype_schema)
 
             # Phenotype Table Schema
             phenotype_schema = pa.schema([
@@ -133,33 +135,33 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
         with session.transaction() as tx:
             bucket = tx.bucket("my_gwas_bucket")
             schema = bucket.schema("gwas_demo")
-            genotype_table = schema.table("Genotype_chr22")
+            genotype_table = schema.table("Genotype_chr22_transposed")
             phenotype_table = schema.table("Phenotype")
             metadata_table = schema.table("Metadata")
 
-            # Load genotype data
-            genotype_data = pq.read_table("chr22_subset.parquet")
+            # Load transposed genotype data
+            genotype_data = pq.read_table("chr22_subset_transposed.parquet")
             genotype_table.insert(genotype_data)
 
             # Load phenotype data
             phenotype_data = pq.read_table("phenotype.parquet")
             phenotype_table.insert(phenotype_data)
 
-            #Load metadata.
+            # Load metadata.
             metadata_data = pq.read_table("metadata.parquet")
             metadata_table.insert(metadata_data)
 ```
 
-You are absolutely right. My apologies! Let's complete the content for section 5.3 and 5.4.
+You are absolutely right, and I apologize for the truncation! Let's complete the remaining sections of Chapter V.
 
-**5.3. Running Example Queries and Analyses (Continued)**
+**5.3. Running Example Queries and Analyses**
 
 * **Demonstrating Basic and Advanced Queries from Chapter IV:**
     * Provide example queries that can be run on the loaded data.
     * Example:
 
 ```python
-        # Select individuals with a specific genotype
+        # Select genotypes for a specific position
         reader = genotype_table.select(predicate=(_.Position == 16050000))
         result = reader.read_all()
         print(result)
@@ -170,15 +172,13 @@ You are absolutely right. My apologies! Let's complete the content for section 5
         print(result)
 
         # Join genotype and phenotype tables
-        # (Requires fetching data and using pandas or pyarrow for the join)
-        genotype_reader = genotype_table.select(columns=['Chromosome','Position'])
-        phenotype_reader = phenotype_table.select(columns=['Individual_ID','Disease_Status'])
+        genotype_reader = genotype_table.select(columns=['Chromosome', 'Position', 'Individual_ID', 'Genotype'])
+        phenotype_reader = phenotype_table.select(columns=['Individual_ID', 'Disease_Status'])
 
         genotype_result = genotype_reader.read_all().to_pandas()
         phenotype_result = phenotype_reader.read_all().to_pandas()
 
-        # Assuming Individual_ID is available in genotype_result
-        joined_result = genotype_result.merge(phenotype_result, on='Individual_ID', how='inner')
+        joined_result = pd.merge(genotype_result, phenotype_result, on='Individual_ID', how='inner')
         print(joined_result)
 ```
 
@@ -188,11 +188,12 @@ You are absolutely right. My apologies! Let's complete the content for section 5
 
 ```python
         # Calculate allele frequencies (using pandas after fetching data)
-        genotype_reader = genotype_table.select(columns=['Chromosome', 'Position'])
+        genotype_reader = genotype_table.select(columns=['Position', 'Genotype'])
         genotype_results = genotype_reader.read_all().to_pandas()
-        # count the number of times each unique value occurs in the position column.
-        allele_counts = genotype_results['Position'].value_counts()
-        print(allele_counts)
+
+        # Count the number of times each unique genotype occurs at a specific position.
+        position_16050000_genotypes = genotype_results[genotype_results['Position'] == 16050000]['Genotype'].value_counts()
+        print(position_16050000_genotypes)
 ```
 
 * **Visualizing Results:**
@@ -202,11 +203,11 @@ You are absolutely right. My apologies! Let's complete the content for section 5
 ```python
         import matplotlib.pyplot as plt
 
-        # Create a histogram of allele frequencies
-        allele_counts.plot(kind='bar')
-        plt.title("Allele Frequency Histogram")
-        plt.xlabel("Position")
-        plt.ylabel("Frequency")
+        # Create a bar plot of genotype counts at a specific position.
+        position_16050000_genotypes.plot(kind='bar')
+        plt.title("Genotype Counts at Position 16050000")
+        plt.xlabel("Genotype")
+        plt.ylabel("Count")
         plt.show()
 ```
 
@@ -228,8 +229,7 @@ You are absolutely right. My apologies! Let's complete the content for section 5
 
         # Time the same query using pandas (if data is loaded into memory)
         start_time_pandas = time.time()
-        # load the parquet file into a pandas dataframe.
-        pandas_df = pd.read_parquet('chr22_subset.parquet')
+        pandas_df = pd.read_parquet('chr22_subset_transposed.parquet')
         pandas_result = pandas_df[pandas_df['Position'] == 16050000]
         pandas_time = time.time() - start_time_pandas
 
