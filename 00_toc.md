@@ -1,62 +1,70 @@
 **Tutorial: Understanding Genome-Wide Association Studies (GWAS) and Database Design**
 
-**I. Introduction to Genetics and GWAS**
+**1. Introduction to Genetics and GWAS**
 
 * 1.1. What is DNA, Genes, and Genomes?
 * 1.2. Genetic Variation: SNPs and Alleles
 * 1.3. What is a Genome-Wide Association Study (GWAS)?
 * 1.4. The Importance of Large Datasets in GWAS
 
-**II. GWAS Data: Characteristics and Representation**
+**2. GWAS Data: Characteristics and Representation**
 
 * 2.1. Genotype Data: SNPs and Numerical Encoding
 * 2.2. Phenotype Data: Traits and Measurements
 * 2.3. Metadata: Annotations and Demographics
 * 2.4. Exploring Real GWAS Data
 
-**III. Database Design for GWAS Data**
+**3. Open GWAS Data Resources**
 
-* 3.1. Relational vs. Columnar Databases: A Brief Overview
-* 3.2. Why VAST DB is Well-Suited for GWAS
-* 3.3. Multi-Table, Partitioned Approach (Recommended)
-* 3.4. Single-Table (Wide-Column) Approach: Considerations and Trade-offs
-* 3.5. Data Types and Schema Design
-* 3.6. Example Schema and Data Representation
+* 7.1. Introduction to Open GWAS Datasets
+* 7.2. The 1000 Genomes Project
+* 7.3. The UK Biobank
+* 7.4. dbGaP (Database of Genotypes and Phenotypes)
+* 7.5. Other Relevant Resources
+* 7.6. Tips for Working with Open Datasets
 
-**IV. Querying and Analysis in VAST DB**
+Absolutely. Here's the table of contents specifically for the section "7.6. GWAS Data File Types and Structures":
 
-* 4.1. Basic Queries: Selecting Individuals and SNPs
-* 4.2. Advanced Queries: Statistical Analysis
-* 4.3. Performance Optimization: Predicate Pushdown and Partitioning
-* 4.4. Snapshot Strategies.
+**4. GWAS Data File Types and Structures**
 
-**V. Hands-on Demo with Sample GWAS Data**
+* 4.1. VCF (Variant Call Format)
+* 4.2. PLINK Files (BED, BIM, FAM)
+* 4.3. Other Formats
 
-* 5.1. Obtaining and Preparing Sample GWAS Data
-    * Links to publicly available datasets (e.g., 1000 Genomes Project, UK Biobank subset).
-    * Steps for data conversion and formatting.
-* 5.2. Setting Up VAST DB for the Demo
-    * Instructions for creating schemas and tables.
-    * Example data loading scripts using the `vastdb` SDK.
-* 5.3. Running Example Queries and Analyses
-    * Demonstrating basic and advanced queries from Chapter IV.
-    * Performing simple statistical analyses.
-    * Visualizing results.
-* 5.4. Performing comparative timing tests.
-    * Comparing query times between vastdb and other methods.
-    * Providing the scripts used to perform the timing tests.
+**5. Database Design for GWAS Data**
 
-**VI. Demonstrating VAST DB's Value: Performance Benchmarks and Comparisons**
+* 5.1. Relational vs. Columnar Databases: A Brief Overview
+* 5.2. Why VAST DB is Well-Suited for GWAS
+* 5.3. Multi-Table, Partitioned Approach (Recommended)
+* 5.4. Single-Table (Wide-Column) Approach: Considerations and Trade-offs
+* 5.5. Data Types and Schema Design
+* 5.6. Example Schema and Data Representation
 
-* 6.1. Common GWAS Analysis Workflows and Bottlenecks
-* 6.2. Benchmarking Methodology: Defining Relevant Metrics
-* 6.3. Comparative Analysis: VAST DB vs. Traditional Approaches
-* 6.4. Real-World Case Studies and Examples
-* 6.5. Visualizing Performance Differences.
+**6. Querying and Analysis in VAST DB**
 
-**VII. Practical Considerations and Future Directions**
+* 6.1. Basic Queries: Selecting Individuals and SNPs
+* 6.2. Advanced Queries: Statistical Analysis
+* 6.3. Performance Optimization: Predicate Pushdown and Partitioning
+* 6.4. Snapshot Strategies.
 
-* 7.1. Data Ingestion and Quality Control
-* 7.2. Scalability and Performance Tuning
-* 7.3. Ethical and Privacy Considerations
-* 7.4. Future Trends in GWAS and Database Technology
+**7. Hands-on Demo with Sample GWAS Data**
+
+* 7.1. Obtaining and Preparing Sample GWAS Data
+* 7.2. Setting Up VAST DB for the Demo
+* 7.3. Running Example Queries and Analyses
+* 7.4. Performing comparative timing tests.
+
+**8. Demonstrating VAST DB's Value: Performance Benchmarks and Comparisons**
+
+* 8.1. Common GWAS Analysis Workflows and Bottlenecks
+* 8.2. Benchmarking Methodology: Defining Relevant Metrics
+* 8.3. Comparative Analysis: VAST DB vs. Traditional Approaches
+* 8.4. Real-World Case Studies and Examples
+* 8.5. Visualizing Performance Differences.
+
+**9. Practical Considerations and Future Directions**
+
+* 9.1. Data Ingestion and Quality Control
+* 9.2. Scalability and Performance Tuning
+* 9.3. Ethical and Privacy Considerations
+* 9.4. Future Trends in GWAS and Database Technology
