@@ -1,6 +1,6 @@
-**III. Database Design for GWAS Data**
+**5. Database Design for GWAS Data**
 
-**3.1. Relational vs. Columnar Databases: A Brief Overview**
+**5.1. Relational vs. Columnar Databases: A Brief Overview**
 
 * **Relational Databases (Row-Oriented):**
     * Data is stored in rows, where each row represents a record and each column represents an attribute.
@@ -17,7 +17,7 @@
     * Compression: Column-oriented allows for better compression of homogeneous data.
     * Query performance: Column-oriented excels at aggregations and analytical queries.
 
-**3.2. Why VAST DB is Well-Suited for GWAS**
+**5.2. Why VAST DB is Well-Suited for GWAS**
 
 * **Columnar Architecture:**
     * VAST DB's columnar storage aligns perfectly with the structure of GWAS data, where SNPs are analyzed as individual columns.
@@ -33,7 +33,7 @@
 * **Arrow Data Types:**
     * VAST DB's support of Arrow data types, allows for very efficient handling of data.
 
-**3.3. Multi-Table, Partitioned Approach (Recommended)**
+**5.3. Multi-Table, Partitioned Approach (Recommended)**
 
 * **Genotype Tables: Partitioning by Chromosome or Genomic Region:**
     * Creating separate tables for each chromosome or genomic region reduces the size of individual tables and improves query performance.
@@ -46,7 +46,7 @@
     * Storing metadata in separate tables ensures that it is well-organized and easily accessible.
     * This approach also allows for efficient querying of metadata, such as SNP annotations or individual demographics.
 
-**3.4. Single-Table (Wide-Column) Approach: Considerations and Trade-offs**
+**5.4. Single-Table (Wide-Column) Approach: Considerations and Trade-offs**
 
 * **Advantages:**
     * Simpler schema design.
@@ -61,7 +61,7 @@
     * Columnar databases like VAST DB are optimized for reading entire columns, not individual cells.
     * Retrieving all values for a single SNP would require scanning the entire table.
 
-**3.5. Data Types and Schema Design**
+**5.5. Data Types and Schema Design**
 
 * **Choosing Appropriate Data Types:**
     * `UINT8`, `UINT16`, or `INT8` for SNP genotypes (0, 1, 2).
@@ -75,7 +75,7 @@
     * Using appropriate data types for each column.
     * Creating indexes or partitions to optimize query performance.
 
-**3.6. Example Schema and Data Representation**
+**5.6. Example Schema and Data Representation**
 
 * **Genotype Table Example:**
     * `Individual_ID` (INT64), `SNP_1` (UINT8), `SNP_2` (UINT8), ..., `SNP_n` (UINT8).
