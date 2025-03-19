@@ -1,8 +1,8 @@
-**7. Hands-on Demo with Sample GWAS Data**
+**6. Hands-on Demo with Sample GWAS Data**
 
 This chapter provides a practical, step-by-step guide to working with sample GWAS data in VAST DB, using a transposed design, allowing you to apply the concepts learned in previous chapters.
 
-**7.1. Obtaining and Preparing Sample GWAS Data**
+**6.1. Obtaining and Preparing Sample GWAS Data**
 
 * **Links to Publicly Available Datasets:**
     * **1000 Genomes Project:**
@@ -71,7 +71,7 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
         * Convert these files to Apache Arrow format using `pandas` and `pyarrow`.
     * Ensure that Individual IDs are consistent between the phenotype data and the genotype data.
 
-**7.2. Setting Up VAST DB for the Demo**
+**6.2. Setting Up VAST DB for the Demo**
 
 * **Instructions for Creating Schemas and Tables:**
     * Provide example `vastdb` SDK code to create schemas and tables for genotype, phenotype, and metadata data.
@@ -154,7 +154,7 @@ This chapter provides a practical, step-by-step guide to working with sample GWA
 
 You are absolutely right, and I apologize for the truncation! Let's complete the remaining sections of Chapter V.
 
-**7.3. Running Example Queries and Analyses**
+**6.3. Running Example Queries and Analyses**
 
 * **Demonstrating Basic and Advanced Queries from Chapter IV:**
     * Provide example queries that can be run on the loaded data.
@@ -211,7 +211,7 @@ You are absolutely right, and I apologize for the truncation! Let's complete the
         plt.show()
 ```
 
-**7.4. Performing Comparative Timing Tests**
+**6.4. Performing Comparative Timing Tests**
 
 * **Comparing Query Times Between `vastdb` and Other Methods:**
     * Provide Python scripts that measure the execution time of queries in `vastdb` and compare them to other methods (e.g., using `pandas` on the same data loaded into memory).
