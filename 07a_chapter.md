@@ -1,8 +1,8 @@
-**6. Querying and Analysis in VAST DB (Using the vastdb Python SDK)**
+**7. Querying and Analysis in VAST DB (Using the vastdb Python SDK)**
 
 This chapter will guide you through querying and analyzing GWAS data stored in VAST DB using the `vastdb` Python SDK. We'll cover basic and advanced queries, performance optimization, and snapshot strategies, all within the context of the SDK's capabilities.
 
-**6.1. Basic Queries: Selecting Individuals and SNPs**
+**7.1. Basic Queries: Selecting Individuals and SNPs**
 
 * **Connecting to VAST DB and Accessing Tables:**
     * First, you'll need to establish a connection to your VAST DB cluster using the `vastdb.connect()` function.
@@ -92,7 +92,7 @@ with session.transaction() as tx:
     print(result)
 ```
 
-**6.2. Advanced Queries: Statistical Analysis**
+**7.2. Advanced Queries: Statistical Analysis**
 
 * **Aggregations and Calculations Across SNPs:**
     * While the `vastdb` SDK primarily focuses on data retrieval, you can perform aggregations using `pyarrow` after fetching the data.
@@ -124,7 +124,7 @@ with session.transaction() as tx:
 * **Performing basic GWAS calculations within VAST DB:**
     * Calculations such as allelic frequencies and linear regressions, are normally performed using statistical packages after the data has been retrieved.
 
-**6.3. Performance Optimization: Predicate Pushdown and Partitioning**
+**7.3. Performance Optimization: Predicate Pushdown and Partitioning**
 
 * **How VAST DB Optimizes Query Execution:**
     * The `vastdb` SDK leverages VAST DB's predicate pushdown capabilities, as demonstrated in the query examples.
@@ -135,7 +135,7 @@ with session.transaction() as tx:
     * Select only the necessary columns.
     * Ensure your tables are properly partitioned.
 
-**6.4. Snapshot Strategies**
+**7.4. Snapshot Strategies**
 
 * **Why and When to Take Snapshots:**
     * While the `vastdb` SDK doesn't directly manage snapshots, VAST DB itself supports snapshots.
