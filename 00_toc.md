@@ -38,19 +38,19 @@
 * 5.5. Data Types and Schema Design
 * 5.6. Example Schema and Data Representation
 
-**6. Querying and Analysis in VAST DB**
+**6. Hands-on Demo with Sample GWAS Data**
 
-* 6.1. Basic Queries: Selecting Individuals and SNPs
-* 6.2. Advanced Queries: Statistical Analysis
-* 6.3. Performance Optimization: Predicate Pushdown and Partitioning
-* 6.4. Snapshot Strategies.
+* 6.1. Obtaining and Preparing Sample GWAS Data
+* 6.2. Setting Up VAST DB for the Demo
+* 6.3. Running Example Queries and Analyses
+* 6.4. Performing comparative timing tests.
 
-**7. Hands-on Demo with Sample GWAS Data**
+**7. Querying and Analysis in VAST DB**
 
-* 7.1. Obtaining and Preparing Sample GWAS Data
-* 7.2. Setting Up VAST DB for the Demo
-* 7.3. Running Example Queries and Analyses
-* 7.4. Performing comparative timing tests.
+* 7.1. Basic Queries: Selecting Individuals and SNPs
+* 7.2. Advanced Queries: Statistical Analysis
+* 7.3. Performance Optimization: Predicate Pushdown and Partitioning
+* 7.4. Snapshot Strategies.
 
 **8. Demonstrating VAST DB's Value: Performance Benchmarks and Comparisons**
 
