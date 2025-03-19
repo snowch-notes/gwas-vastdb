@@ -33,12 +33,15 @@
 * **Arrow Data Types:**
     * VAST DB's support of Arrow data types, allows for very efficient handling of data.
 
-**5.3. Multi-Table, Partitioned Approach (Recommended)**
+**5.3. Transposed approach (Recommended)**
 
-* **Genotype Tables: Partitioning by Chromosome or Genomic Region:**
-    * Creating separate tables for each chromosome or genomic region reduces the size of individual tables and improves query performance.
-    * This partitioning strategy allows for parallel processing of queries, further accelerating analysis.
-    * This also allows for the amount of data scanned for any given query to be minimized.
+* **Genotype Tables: Transposed and Partitioned by Chromosome or Genomic Region:**
+    * Explain the transposed design: each row represents a genotype call for an individual at a specific position.
+    * Emphasize the benefits of partitioning by chromosome or genomic region:
+        * Reduces table size.
+        * Improves query performance.
+        * Enables parallel processing.
+        * Minimizes data scanned per query.
 * **Phenotype Tables: Separate Tables for Different Traits:**
     * Storing phenotype data in separate tables allows for flexibility and efficient querying of specific traits.
     * This approach also makes it easier to manage and update phenotype data.
@@ -64,12 +67,11 @@
 **5.5. Data Types and Schema Design**
 
 * **Choosing Appropriate Data Types:**
-    * `UINT8`, `UINT16`, or `INT8` for SNP genotypes (0, 1, 2).
-    * `INT64` for individual IDs.
+    * `STRING` for genotype data (e.g., "0/1", "1/1").
+    * `INT64` for individual IDs and chromosome positions.
     * `FLOAT` or `DOUBLE` for continuous phenotype data.
     * `BOOL` for binary phenotype data.
     * `STRING` for categorical phenotype data and metadata.
-    * `STRUCT` for complex metadata.
 * **Designing Efficient Table Schemas:**
     * Defining clear and consistent column names.
     * Using appropriate data types for each column.
@@ -77,13 +79,15 @@
 
 **5.6. Example Schema and Data Representation**
 
-* **Genotype Table Example:**
-    * `Individual_ID` (INT64), `SNP_1` (UINT8), `SNP_2` (UINT8), ..., `SNP_n` (UINT8).
+* **Genotype Table Example (Transposed):**
+    * `Chromosome` (STRING), `Position` (INT64), `Individual_ID` (STRING), `Genotype` (STRING).
+    * Explain how VCF genotype data is converted to this schema.
 * **Phenotype Table Example:**
-    * `Individual_ID` (INT64), `Disease_X_Status` (BOOL), `Height` (FLOAT), `Blood_Type` (STRING).
+    * `Individual_ID` (STRING), `Disease_X_Status` (BOOL), `Height` (FLOAT).
 * **Metadata Table Example:**
-    * `SNP_ID` (STRING), `Chromosome` (STRING), `Position` (INT64), `Gene` (STRING), `Annotation` (STRING).
-    * `Individual_ID` (INT64), `Age` (INT), `Sex` (STRING), `Ethnicity` (STRING).
+    * `SNP_ID` (STRING), `Gene` (STRING).
+    * `Individual_ID` (STRING), `Age` (INT), `Sex` (STRING).
 * **Data Representation:**
     * Illustrative examples of data within the defined schema.
     * How missing data is handled.
+    * Example of the genotype string representing the alleles.
