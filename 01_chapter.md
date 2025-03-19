@@ -15,12 +15,17 @@
     * In eukaryotic cells (like human cells), DNA is organized into structures called chromosomes.
     * Each chromosome is a long, continuous strand of DNA tightly coiled around proteins.
     * Humans have 23 pairs of chromosomes (46 total): 22 pairs of autosomes and 1 pair of sex chromosomes (XX for females, XY for males).
+    * **Histones:** These are basic proteins that DNA wraps around. They act like spools, helping to condense and organize the lengthy DNA molecules.
+    * **Nucleosomes:** A nucleosome is the basic structural unit of chromatin, which is the substance that makes up chromosomes. It consists of a segment of DNA wound around a core of eight histone proteins. Think of it as beads on a string, where the "beads" are the nucleosomes.
+    * **Chromatin:** This is the complex of DNA and proteins (including histones) that makes up chromosomes. It's the packaging material of DNA.
+    * **Chromatids:** When a chromosome is duplicated (before cell division), it consists of two identical sister chromatids. These chromatids are joined together.
+    * **Centromere:** This is the region of a chromosome where the two sister chromatids are joined. It plays a critical role in cell division, ensuring that each daughter cell receives one copy of each chromosome.
 * **The Human Genome: The Complete Set of Genetic Instructions:**
     * The genome is the complete set of genetic material in an organism.
     * The human genome consists of approximately 3 billion base pairs of DNA.
     * The Human Genome Project, completed in 2003, sequenced and mapped the entire human genome, providing a foundational resource for genetic research.
 
-![Chemical Structure of DNA](https://www.compoundchem.com/wp-content/uploads/2015/03/The-Chemical-Structures-of-DNA-RNA-Aug-2018.png)
+![Chromosomes](https://openlab.citytech.cuny.edu/bio-oer/files/2015/06/chromosomes-953x1024.png)
 
 **1.2. Genetic Variation: SNPs and Alleles**
 
