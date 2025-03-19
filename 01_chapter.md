@@ -42,6 +42,8 @@
     * A genotype is the specific combination of alleles an individual has at a particular genetic locus (location).
     * For a SNP with two alleles (e.g., A and C), there are three possible genotypes: AA, AC, and CC.
     * Genotypes determine an individual's genetic makeup at specific locations in the genome.
+ 
+![SNP](https://atlasofscience.org/wp-content/uploads/2016/03/Fig1-Iacobucci.jpg)
 
 **1.3. What is a Genome-Wide Association Study (GWAS)?**
 
