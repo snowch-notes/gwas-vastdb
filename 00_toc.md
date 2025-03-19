@@ -12,6 +12,7 @@
 * 2.1. Genotype Data: SNPs and Numerical Encoding
 * 2.2. Phenotype Data: Traits and Measurements
 * 2.3. Metadata: Annotations and Demographics
+* 2.4. Exploring Real GWAS Data
 
 **III. Database Design for GWAS Data**
 
