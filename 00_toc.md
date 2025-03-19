@@ -23,8 +23,6 @@
 * 7.5. Other Relevant Resources
 * 7.6. Tips for Working with Open Datasets
 
-Absolutely. Here's the table of contents specifically for the section "7.6. GWAS Data File Types and Structures":
-
 **4. GWAS Data File Types and Structures**
 
 * 4.1. VCF (Variant Call Format)
