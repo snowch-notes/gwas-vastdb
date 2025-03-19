@@ -16,12 +16,12 @@
 
 **3. Open GWAS Data Resources**
 
-* 7.1. Introduction to Open GWAS Datasets
-* 7.2. The 1000 Genomes Project
-* 7.3. The UK Biobank
-* 7.4. dbGaP (Database of Genotypes and Phenotypes)
-* 7.5. Other Relevant Resources
-* 7.6. Tips for Working with Open Datasets
+* 3.1. Introduction to Open GWAS Datasets
+* 3.2. The 1000 Genomes Project
+* 3.3. The UK Biobank
+* 3.4. dbGaP (Database of Genotypes and Phenotypes)
+* 3.5. Other Relevant Resources
+* 3.6. Tips for Working with Open Datasets
 
 **4. GWAS Data File Types and Structures**
 
