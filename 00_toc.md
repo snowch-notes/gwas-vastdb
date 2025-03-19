@@ -26,8 +26,8 @@
 **4. GWAS Data File Types and Structures**
 
 * 4.1. VCF (Variant Call Format)
-* 4.2. PLINK Files (BED, BIM, FAM)
-* 4.3. Other Formats
+* 4.2. Understanding VCF in the Context of GWAS
+* 4.3. Other Relevant File Considerations
 
 **5. Database Design for GWAS Data**
 
