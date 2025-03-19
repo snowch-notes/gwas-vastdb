@@ -61,3 +61,85 @@
     * Metadata enhances the value of GWAS data by providing context and enabling more accurate interpretation of results.
     * Comprehensive and well-documented metadata is essential for reproducibility and data sharing.
     * It is important to track changes to metadata, and to have a way of handling different versions of metadata.
+ 
+**2.4. Exploring Real GWAS Data**
+
+* **Introduction:**
+    * This section aims to illustrate the concepts discussed in Chapter II by examining a simplified example of GWAS data.
+    * It's important to note that this is a small subset for educational purposes and does not represent the complexity of a full-scale GWAS.
+
+* **Data Source:**
+    * For this example, we will use a small subset of data derived from the 1000 Genomes Project.
+    * The 1000 Genomes Project provides a comprehensive catalog of human genetic variation.
+    * You can access the data here: \[Provide specific link to a small, manageable subset if available, or reference the main 1000 Genomes Project site: [https://www.internationalgenome.org/](https://www.internationalgenome.org/) ]
+    * For this example, we will focus on a small region of Chromosome 22.
+
+* **Data Overview:**
+
+    * **Genotype Data:**
+        * Here's a simplified representation of what genotype data might look like (transposed format):
+
+        |   Chromosome   |   Position   |   Individual\_ID   |   Genotype   |
+        | :-----------: | :----------: | :---------------: | :---------: |
+        |       22      |   16050000   |      Sample\_1      |      A\|G      |
+        |       22      |   16050000   |      Sample\_2      |      G\|G      |
+        |       22      |   16050000   |      Sample\_3      |      A\|A      |
+        |       22      |   16050100   |      Sample\_1      |      C\|T      |
+        |       22      |   16050100   |      Sample\_2      |      C\|C      |
+        |       22      |   16050100   |      Sample\_3      |      T\|T      |
+
+        * Explanation:
+            * Chromosome and Position indicate the location of the SNP.
+            * Individual\_ID represents a participant in the study.
+            * Genotype shows the alleles for that individual at that SNP (e.g., A\|G means one allele is A, and the other is G).
+    * **Phenotype Data:**
+        * Here's an example of phenotype data for a binary trait (e.g., Disease X):
+
+        |   Individual\_ID   |   Disease\_X\_Status   |
+        | :---------------: | :-------------------: |
+        |      Sample\_1      |          True         |
+        |      Sample\_2      |          False        |
+        |      Sample\_3      |          True         |
+
+        * Explanation:
+            * Individual\_ID links this data to the genotype data.
+            * Disease\_X\_Status indicates whether the individual has the disease (True) or not (False).
+    * **Metadata:**
+        * Example of SNP metadata:
+
+        |   Chromosome   |   Position   |   Gene   |   Annotation   |
+        | :-----------: | :----------: | :-----: | :-----------: |
+        |       22      |   16050000   |   BRCA2  |    Intronic    |
+        |       22      |   16050100   |   BRCA2  |     Exonic     |
+
+        * Explanation:
+            * Chromosome and Position identify the SNP.
+            * Gene indicates the closest known gene.
+            * Annotation provides functional information about the SNP's location.
+
+* **Illustrative Examples:**
+
+    * **Numerical Encoding:**
+        * In some cases, genotypes are numerically encoded. For example:
+            * A\|A might be represented as 0
+            * A\|G might be represented as 1
+            * G\|G might be represented as 2
+    * **Allele Frequencies:**
+        * Let's take the SNP at position 16050000.
+        * Allele A appears in Sample\_1 and Sample\_3 (3 times).
+        * Allele G appears in Sample\_1 and Sample\_2 (2 times).
+        * If these were all the samples, the frequency of allele A would be 3/5, and the frequency of allele G would be 2/5.
+    * **Linking Genotype and Phenotype:**
+        * To analyze if the SNP at 16050000 is associated with Disease X, we would link the genotype and phenotype data using the Individual\_ID.
+        * For example, Sample\_1 has genotype A\|G and Disease\_X\_Status = True.
+    * **Metadata Enrichment:**
+        * The metadata tells us that the SNP at 16050000 is located within the BRCA2 gene. This information can be used to interpret the results of the GWAS.
+
+* **Visualizations (Optional):**
+
+    * A simple bar chart could be used to visualize the allele frequencies calculated above.
+
+* **Transition to Database Design:**
+
+    * The structure of this example data (chromosome, position, individual ID, genotype, phenotype, metadata) demonstrates the need for a database design that can efficiently store and query this information.
+    * The next chapter will explore how to design a database to handle this type of data, focusing on the use of VAST DB.
