@@ -20,6 +20,8 @@
     * The human genome consists of approximately 3 billion base pairs of DNA.
     * The Human Genome Project, completed in 2003, sequenced and mapped the entire human genome, providing a foundational resource for genetic research.
 
+![Chemical Structure of DNA](https://www.compoundchem.com/wp-content/uploads/2015/03/The-Chemical-Structures-of-DNA-RNA-Aug-2018.png)
+
 **1.2. Genetic Variation: SNPs and Alleles**
 
 * **Single Nucleotide Polymorphisms (SNPs): The Most Common Type of Genetic Variation:**
